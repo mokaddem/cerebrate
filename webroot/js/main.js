@@ -37,3 +37,9 @@ function executeStateDependencyChecks(dependenceSourceSelector) {
         }
     });
 }
+
+var MISPApi, UI
+$(document).ready(() => {
+    MISPApi = new MISPAPI()
+    UI = new UIFactory()
+})

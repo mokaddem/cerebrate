@@ -30,10 +30,38 @@ echo $this->element('genericElements/IndexTable/index_table', [
                 'element' => 'toggle',
                 'url' => '/metaTemplates/toggle',
                 'url_params_data_paths' => ['id'],
-                'toggle_requirement' => [
-                    'function' => function($row, $options) {
-                        return true;
-                    }
+                'toggle_data' => [
+                    'requirement' => [
+                        'function' => function($row, $options) {
+                            return true;
+                        }
+                    ]
+                ]
+            ],
+            [
+                'name' => 'Default',
+                'sort' => 'default',
+                'data_path' => 'default',
+                'element' => 'toggle',
+                'url' => '/metaTemplates/toggle',
+                'url_params_data_paths' => ['id', 'default'],
+                'toggle_data' => [
+                    'requirement' => [
+                        'function' => function($row, $options) {
+                            return true;
+                        }
+                    ],
+                    'confirm' => [
+                        'titleHtml' => __('Set {{0}} as default template'),
+                        'titleHtml_vars' => ['name'],
+                        'bodyHtml' => $this->Html->nestedList([
+                            __('Only one template per scope can be set as default template'),
+                            __('Current scope: {{0}}'),
+                        ]),
+                        'bodyHtml_vars' => ['scope'],
+                        'type' => 'confirm-warning',
+                        'confirmText' => __('Yes, set as default')
+                    ]
                 ]
             ],
             [
